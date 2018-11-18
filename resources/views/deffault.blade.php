@@ -35,7 +35,7 @@
         <td bgcolor =  "#0080FF" width="20%" height= "150" ><img width="100%" height="100%" src="/img/123456.jpg"></td>
         <td bgcolor =  "#0080FF">  @include ('header') </td>
     <tr>
-        <td  bgcolor =  "#0080FF" >@include('leftmenu')</td>  <td>{{session()->get('message','')}} @if(isset($inf))  @include($inf) @endif </td>
+        <td  bgcolor =  "#0080FF" >@include('leftmenu')</td>  <td>{{session()->get('message','')}}@if(isset($inf))  @include($inf,$nextinf)@endif </td>
     </tr>
 </table>
 
@@ -55,7 +55,7 @@
        $('#text').summernote({
            lang:'ru-RU',
            height:200,
-           width:800,
+           width:830,
            right: 10,
            minHeight:200,
            padding: 20,

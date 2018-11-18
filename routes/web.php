@@ -7,11 +7,12 @@ Route::get('/', function () {
 })->name('start');//стартовый
 
 Route::get('/authorization', function () {
-    return view('deffault', ['inf' => 'authorization']);
+    $params = ['inf' => 'authorization', 'nextinf' => ['']];
+    return view('deffault', $params);
 })->name('auth');
 
 Route::post('/authorization', 'UsersController@authorization');
-
+//Route::post('/authorization', 'UsersController@authorization1');
 
 Route::get('/exit', function () {
     session(['user_id' => '']);
@@ -26,23 +27,52 @@ Route::get('/task', function () {
     return view('deffault');
 })->middleware('noauth');
 
-Route::get('/task/create', function () {
-    return view('deffault', ['inf' => 'createtask']);
-})->middleware('noauth');
-Route::post('/task/create', function (Request $request) {
-    return view('deffault', ['inf' => 'testform']);
-})->middleware('noauth')->name('create');
+Route::get('/task/create', 'TasksController@GetFormCreateTask')->middleware('noauth');
 
-Route::get('/task/my', function () {
+
+Route::post('/task/create','TasksController@PutTask')->middleware('noauth')->name('creates');
+
+route::get('/test', function () {
+    $time = '+ 2 Hour';
+    $date = new DateTime($time,new DateTimeZone('Europe/kiev'));
+    echo $date->format("Y-m-d H:i:s");
+
+});
+
+
+
+Route::get('/task/forme', 'TasksController@ViewAllTaskforme')->middleware('noauth');
+Route::get('/task/my', 'TasksController@ViewAllTaskmy')->middleware('noauth')->name('taskmy');
+Route::post('/task/id', 'TasksController@PutAnswerForTheTask')->middleware('noauth')->name('putanswer');
+Route::get('/task/{id}', 'TasksController@Answertothetask')->middleware('noauth');
+
+
+
+
+Route::get('/registration', function () {
     return view('deffault', ['inf' => 'testform']);
-})->middleware('noauth');
-Route::get('/task/forme', function () {
-    return view('deffault', ['inf' => 'testform']);
-})->middleware('noauth');
+});
+
 Route::get('/admin', function () {
-    return view('deffault', ['inf' => 'testform']);
-})->middleware('noauth');
-
+    session(['action'=>'admin']);
+    return view('deffault');
+})->name('admin');
+//Через панель "Админ меню" заполняем информацию о юзере.
+Route::get('/admin/create', function () {
+    return view('deffault', ['inf' => 'usersCreate', 'nextinf'=>['']]);
+});
+//Добавить Изера и информацию о нем
+Route::post('/admin/create', 'UsersController@usersInfoCreate')->name('usersCreate');
+//Список пользователей
+Route::get('/admin/userslist', 'UsersController@getUsersList')->name('usersList');
+//Заполняем информацию о пользователе, используем get запрос
+Route::get('/admin/create/{inform_id}', 'UsersController@getOneUsersInf')->name('oneUsersInf');
+//Изменяем информацию о пользователе, используем post запрос
+Route::post('/admin/create/{inform_id}', 'UsersController@updateOneUsersInf')->name('updateOneUsersInf');
+Route::get('/changePassword', function () {
+    return view('deffault', ['inf' => 'changePassword', 'nextInf'=>[]]);
+})->name('changePassword');
+Route::post('/changePassword', 'UsersController@changePassword');
 
 
 
