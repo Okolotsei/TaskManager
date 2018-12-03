@@ -3,7 +3,7 @@
         {{ csrf_field() }}
         <p align='right'><a href='{{session('listaction')}}'>Назад</a></p>
         <table border="1">
-            <tr bgcolor="#0080FF">
+            <tr style="background-color:#228B22">
                 <td>Инициатор</td>
                 <td>Исполнитель</td>
                 <td>Срок</td>

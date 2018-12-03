@@ -18,7 +18,7 @@ class User extends Model
 
     public function scopeAuthuser($query)
     {
-        return $query->where([['login', '=', $_POST['login']], ['password', '=', $_POST['pasword']]]);
+        return $query->where([['login', '=', $_POST['login']], ['password', '=', $_POST['password']]]);
     }
 
     //Добавляем новую запись в Users

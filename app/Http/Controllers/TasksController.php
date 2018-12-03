@@ -56,7 +56,7 @@ class TasksController extends Controller
             ->join('task_status as t', 'tasks.status_id', '=', 't.status_id')
             ->select('tasks.task_id', 'tasks.task_subject', 'u.FIO as worker', 'task_create', 'task_term', 'task_end', 'status_name')
             ->where('creater_user_id', session('user_id'))
-            //->orderBy('task_create', 'desc')
+            ->orderBy('task_create', 'desc')
             ->paginate(8);
         $array = ['inf' => 'listtasksforme', 'nextinf' => ['tasks' => $tasks]];
 

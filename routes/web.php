@@ -70,7 +70,7 @@ Route::get('/admin/create/{inform_id}', 'UsersController@getOneUsersInf')->name(
 //Изменяем информацию о пользователе, используем post запрос
 Route::post('/admin/create/{inform_id}', 'UsersController@updateOneUsersInf')->name('updateOneUsersInf');
 Route::get('/changePassword', function () {
-    return view('deffault', ['inf' => 'changePassword', 'nextInf'=>[]]);
+    return view('deffault', ['inf' => 'changePassword', 'nextinf'=>[]]);
 })->name('changePassword');
 Route::post('/changePassword', 'UsersController@changePassword');
 

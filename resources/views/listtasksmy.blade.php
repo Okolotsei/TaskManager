@@ -3,7 +3,7 @@
 //?>
 <table border="1">
     <div class="container">
-        <tr bgcolor="#0080FF">
+        <tr style="background-color:#228B22">
             <td><b>ИД</b></td>
             <td><b>Тема</b></td>
             <td><b>Инициатор</b></td>
@@ -32,12 +32,12 @@
             //  echo date_diff(new DateTime($timenow),new DateTime($task->task_term))->days;
 
             ?>
-            <tr bgcolor='{{$color}}'>
+            <tr BGCOLOR="#F2F5A9">
                 <td>{{ $task->task_id }} </td>
                 <td><b><a href='/task/{{ $task->task_id }}'>{{ $task->task_subject }}</a></b> </td>
                 <td>{{ $task->creator }} </td>
                 <td>{{ $task->task_create }} </td>
-                <td>{{ $task->task_term }} </td>
+                <td bgcolor='{{$color}}'>{{ $task->task_term }} </td>
                 <td>{{ $task->task_end}} </td>
                 <td>{{ $task->status_name }} </td>
 
